@@ -165,21 +165,66 @@ pnpm build
 pnpm prepublishOnly
 ```
 
-实际发布流程和 npm 权限配置待补充。
+### 首次发布
+
+```bash
+# 安装依赖
+pnpm install
+
+# 构建产物
+pnpm build
+
+# 发布到 npm
+npm publish
+```
+
+首次发布前需要确认：
+
+- npm 包名未被占用，或当前账号拥有该包的发布权限
+- `package.json` 中的 `name`、`version`、`bin`、`files` 配置正确
+- 已登录正确的 npm 账号
+
+### 更新发布
+
+npm 不允许重复发布同一个包版本。每次更新后，都需要先提交代码，再升级版本号，最后重新构建并发布。
+
+```bash
+# 查看当前改动
+git status
+
+# 提交本次变更
+git add .
+git commit -m "type(scope): 本次更新说明"
+
+# 确认工作区干净
+git status --short
+
+# 升级版本号
+pnpm version patch
+
+# 构建并发布
+pnpm build
+npm publish
+```
+
+版本号选择建议：
+
+- `pnpm version patch`：文档修复、小问题修复
+- `pnpm version minor`：新增能力且保持兼容
+- `pnpm version major`：包含破坏性变更
+
+注意事项：
+
+- 执行 `pnpm version patch/minor/major` 前，Git 工作区必须是干净的，否则会报 `Git working directory not clean`
+- 发布失败并提示 `You cannot publish over the previously published versions` 时，说明该版本已经发布过，需要升级版本号后重新发布
+- `pnpm version` 会自动修改版本号并创建对应的 Git commit / tag
+- 发布前建议确认已登录正确的 npm 账号，并且账号有当前包的发布权限
 
 ## 部署说明
 
 这是一个 npm CLI 工具，不需要像 Web 项目一样部署到服务器。常见交付方式是构建后发布到 npm，再通过 `npx` 或项目内 devDependencies 使用。
 
-如果需要发布到 npm，可参考以下流程：
-
-```bash
-pnpm install
-pnpm build
-npm publish
-```
-
-npm 包名、发布账号、版本策略和访问权限请根据实际情况确认。
+npm 包名、发布账号和访问权限请根据实际情况确认。
 
 ## 后续计划
 
