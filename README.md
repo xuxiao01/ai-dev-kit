@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/images/readme-cover.png" alt="项目预览图" width="800" />
+  <img src="https://typorabucket0308.oss-cn-beijing.aliyuncs.com/images/20260603103934962.jpg" alt="项目预览图" width="800" />
 </p>
 
 <h1 align="center">ai-dev-kit</h1>

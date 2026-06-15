@@ -17,17 +17,20 @@
 
 
 封面图默认使用用户提供的占位图地址。
-如果用户没有提供具体图片地址，则使用以下默认占位路径：默认占位图如下:
+如果用户没有在本次对话中额外提供具体图片地址，则使用以下 command 内置的默认 OSS 占位图地址。注意：这个 OSS 地址本身就是一个明确的图片地址，不要把它理解成“用户没有提供图片”。
 
 ![1c672ff2d50bd00a00908783841677f0](https://typorabucket0308.oss-cn-beijing.aliyuncs.com/images/20260603103934962.jpg)
 
 封面图生成规则：
 
 - 默认放在 README 最顶部，位于项目标题之前
-- 优先使用用户提供的 OSS 图片地址 / GIF 地址
-- 如果项目中存在 `docs/images/readme-cover.gif`，优先使用 GIF
-- 如果项目中存在 `docs/images/readme-cover.png`，使用 PNG
-- 如果都不存在，保留 `./docs/images/readme-cover.png` 作为占位路径，方便后续替换
+- 封面图地址优先级必须严格按以下顺序执行：
+  1. 如果用户在本次请求中明确提供了 OSS 图片地址 / GIF 地址，优先使用用户提供的地址
+  2. 如果项目中存在 `docs/images/readme-cover.gif`，使用该 GIF
+  3. 如果项目中存在 `docs/images/readme-cover.png`，使用该 PNG
+  4. 如果项目中不存在本地封面图，使用上方 command 内置的默认 OSS 占位图地址
+  5. 只有当 command 中也没有默认 OSS 图片地址时，才保留 `./docs/images/readme-cover.png` 作为本地占位路径
+- 当前 command 已经提供默认 OSS 占位图地址，因此在没有本地封面图时，应该使用 `https://typorabucket0308.oss-cn-beijing.aliyuncs.com/images/20260603103934962.jpg`
 - 不要凭空编造不存在的线上图片地址
 - 不要添加带有版权风险、敏感信息、账号信息、接口地址的图片说明
 - 封面图推荐使用横图，适合 README 顶部展示
@@ -36,9 +39,11 @@
 
 推荐输出格式：
 
+如果没有检测到项目本地封面图，且用户没有额外提供图片地址，则使用 command 内置的默认 OSS 图片：
+
 ```html
 <p align="center">
-  <img src="./docs/images/readme-cover.png" alt="项目预览图" width="800" />
+  <img src="https://typorabucket0308.oss-cn-beijing.aliyuncs.com/images/20260603103934962.jpg" alt="项目预览图" width="800" />
 </p>
 
 <h1 align="center">项目名称</h1>
@@ -47,7 +52,15 @@
 </p>
 ```
 
-如果用户提供了 OSS 图片地址，则改成：
+如果检测到项目本地封面图，则改成对应本地路径：
+
+```html
+<p align="center">
+  <img src="./docs/images/readme-cover.png" alt="项目预览图" width="800" />
+</p>
+```
+
+如果用户在本次请求中提供了 OSS 图片地址，则改成：
 
 ```html
 <p align="center">
