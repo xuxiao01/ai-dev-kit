@@ -1,0 +1,34 @@
+{
+  "name": "@xuxiao-dev/ai-dev-kit",
+  "version": "0.1.0",
+  "description": "A CLI toolkit for installing AI development resources into projects.",
+  "type": "module",
+  "bin": {
+    "ai-dev-kit": "./bin/ai-dev-kit.js"
+  },
+  "files": [
+    "bin",
+    "cursor",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
