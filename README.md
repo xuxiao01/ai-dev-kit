@@ -4,14 +4,15 @@
 
 <h1 align="center">ai-dev-kit</h1>
 <p align="center">
-  用于把 AI 开发辅助资源安装到项目中的 TypeScript CLI 工具。
+  用于把 AI 开发辅助资源安装到项目中的 TypeScript CLI 工具。<br />
+  在目标项目根目录执行：<code>npx @xuxiao-dev/ai-dev-kit cursor add --all</code>
 </p>
 
 ## 项目简介
 
 `@xuxiao-dev/ai-dev-kit` 是一个面向项目开发流程的 npm CLI 工具包，当前主要用于管理和安装 Cursor 相关资源。
 
-它可以将包内置的 Cursor Rules 和 Cursor Commands 复制到当前项目的 `.cursor/` 目录，适合在多个项目中复用统一的 AI 协作规范、README 生成命令、任务计划命令和提交命令。
+在任意项目根目录执行 `npx @xuxiao-dev/ai-dev-kit cursor add --all`，即可将包内置的 Cursor Rules 和 Cursor Commands 复制到 `.cursor/` 目录，适合在多个项目中复用统一的 AI 协作规范、README 生成命令、任务计划命令和提交命令。
 
 当前项目类型为工具库 / npm 包，入口命令为 `ai-dev-kit`，运行环境要求 Node.js `>=18`。
 
@@ -101,50 +102,68 @@ pnpm build
 node bin/ai-dev-kit.js cursor list
 ```
 
-## 使用方式
+## 快速开始
 
-直接通过 npm 包运行：
+在目标项目根目录执行，一次性安装全部内置 Cursor 资源：
 
 ```bash
-npx @xuxiao-dev/ai-dev-kit cursor list
+npx @xuxiao-dev/ai-dev-kit cursor add --all
 ```
 
-或安装到项目中使用：
+资源会复制到当前项目的 `.cursor/rules` 和 `.cursor/commands`。默认跳过已存在文件；如需覆盖，加 `--force`。
+
+## 使用方式
+
+推荐通过 `npx` 直接运行，无需提前安装：
 
 ```bash
-pnpm add -D @xuxiao-dev/ai-dev-kit
-pnpm ai-dev-kit cursor list
+npx @xuxiao-dev/ai-dev-kit <子命令>
 ```
 
 查看内置资源：
 
 ```bash
-ai-dev-kit cursor list
-```
-
-安装单个 Cursor Rule：
-
-```bash
-ai-dev-kit cursor add rule ai-task-workflow-rule
-```
-
-安装单个 Cursor Command：
-
-```bash
-ai-dev-kit cursor add command readme-command
+npx @xuxiao-dev/ai-dev-kit cursor list
 ```
 
 安装全部 Cursor 资源：
 
 ```bash
-ai-dev-kit cursor add --all
+npx @xuxiao-dev/ai-dev-kit cursor add --all
+```
+
+安装单个 Cursor Rule：
+
+```bash
+npx @xuxiao-dev/ai-dev-kit cursor add rule ai-task-workflow-rule
+```
+
+安装单个 Cursor Command：
+
+```bash
+npx @xuxiao-dev/ai-dev-kit cursor add command readme-command
 ```
 
 覆盖已存在文件：
 
 ```bash
-ai-dev-kit cursor add rule ai-task-workflow-rule --force
-ai-dev-kit cursor add --all --force
+npx @xuxiao-dev/ai-dev-kit cursor add rule ai-task-workflow-rule --force
+npx @xuxiao-dev/ai-dev-kit cursor add --all --force
+```
+
+### 安装到项目后使用
+
+若已作为开发依赖安装，可省略 `npx` 前缀：
+
+```bash
+pnpm add -D @xuxiao-dev/ai-dev-kit
+pnpm ai-dev-kit cursor add --all
+```
+
+等价于：
+
+```bash
+npx @xuxiao-dev/ai-dev-kit cursor add --all
 ```
 
 ## 环境变量
