@@ -1,0 +1,4 @@
+interface:
+  display_name: "提交暂存区变更"
+  short_description: "生成中文 Conventional Commit 并安全提交暂存区"
+  default_prompt: "Use $commit-staged-changes to commit the current staged changes."

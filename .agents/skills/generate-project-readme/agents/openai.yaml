@@ -1,0 +1,4 @@
+interface:
+  display_name: "生成项目 README"
+  short_description: "基于真实项目结构生成专业 README 文档"
+  default_prompt: "Use $generate-project-readme to create or update this project README."
