@@ -1,6 +1,6 @@
 {
   "name": "@xuxiao-dev/ai-dev-kit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A CLI toolkit for installing AI development resources into projects.",
   "type": "module",
   "bin": {
