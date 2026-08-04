@@ -134,7 +134,7 @@ npx @xuxiao-dev/ai-dev-kit codex add --all --force
 | --- | --- |
 | Cursor Rule | `ai-task-workflow-rule` |
 | Cursor Command | `commit`、`create-plan-from-brief`、`readme-command` |
-| Codex Skill | `commit-staged-changes`、`generate-project-readme` |
+| Codex Skill | `bug-review`、`commit-staged-changes`、`generate-project-readme`、`optimize-blog`、`project-documentation` |
 | Codex Rule | `ai-task-workflow-rule` |
 
 安装后，Cursor 资源会写入 `.cursor/rules/` 或 `.cursor/commands/`；Codex skills 会写入 `.agents/skills/`；Codex rules 会合并到目标项目的 `AGENTS.md`。

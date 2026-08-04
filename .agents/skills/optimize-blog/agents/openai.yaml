@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 写博客"
+  short_description: "优化技术博客的标题结构、表达与 Markdown 排版"
+  default_prompt: "使用 $optimize-blog 优化这篇博客，并保留原文观点与事实边界。"
