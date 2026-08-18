@@ -8,7 +8,7 @@
 
 ## 项目简介
 
-`@xuxiao-dev/ai-dev-kit` 是一个 npm CLI 包，用于将包内维护的 Cursor rules / commands，以及 Codex skills / rules 复制或合并到当前工作目录的项目中。
+`@xuxiao-dev/ai-dev-kit` 是一个 npm CLI 包，用于将包内维护的 Cursor rules / commands 和 Codex skills 安装到当前工作目录的项目中。
 
 CLI 命令为 `ai-dev-kit`，运行环境要求 Node.js `>=18`。
 
@@ -17,7 +17,7 @@ CLI 命令为 `ai-dev-kit`，运行环境要求 Node.js `>=18`。
 - 列出包内可用的 Cursor 和 Codex 资源。
 - 安装单个或全部 Cursor rule 与 command 到 `.cursor/`。
 - 安装单个或全部 Codex skill 到 `.agents/skills/`。
-- 将 Codex skills 安装到 `.agents/skills/`，并在 `AGENTS.md` 中维护简短索引。
+- 在目标项目的 `AGENTS.md` 中维护由 ai-dev-kit 管理的简短 Skill 索引。
 - 默认跳过目标中已存在的资源；使用 `--force` 可覆盖已安装的 Skill 或更新受管理的 `AGENTS.md` 索引区块。
 
 ## 技术栈
@@ -36,8 +36,7 @@ CLI 命令为 `ai-dev-kit`，运行环境要求 Node.js `>=18`。
 ai-dev-kit/
 ├── bin/                         # 构建后的 CLI
 ├── codex/
-│   ├── rules/
-│   └── skills/
+│   └── skills/                  # Codex 内置 Skill
 ├── cursor/
 │   ├── commands/
 │   └── rules/
@@ -105,11 +104,10 @@ npx @xuxiao-dev/ai-dev-kit cursor add command readme-command
 npx @xuxiao-dev/ai-dev-kit codex add --all
 ```
 
-也可以只安装某一类 Codex 资源：
+安装全部 Codex skills，也可以显式指定 Skill 类型：
 
 ```bash
 npx @xuxiao-dev/ai-dev-kit codex add skill --all
-npx @xuxiao-dev/ai-dev-kit codex add rule --all
 ```
 
 安装单个 Codex skill：
@@ -137,6 +135,19 @@ npx @xuxiao-dev/ai-dev-kit codex add --all --force
 | Codex Skill | `content-blog-optimize`、`document-project-docs`、`document-project-readme`、`engineering-bug-review`、`git-commit-staged`、`vue-component-config` |
 
 安装后，Cursor 资源会写入 `.cursor/rules/` 或 `.cursor/commands/`；Codex skills 会写入 `.agents/skills/`，并在目标项目的 `AGENTS.md` 中追加由 ai-dev-kit 管理的 Skill 索引区块。完整 Skill 内容不会写入 `AGENTS.md`。
+
+目标项目中的 Codex 资源结构示例：
+
+```text
+project/
+├── AGENTS.md
+└── .agents/
+    └── skills/
+        └── vue-component-config/
+            └── SKILL.md
+```
+
+`AGENTS.md` 只记录 Skill 的用途和路径；具体任务规范保存在对应的 `SKILL.md` 中。
 
 ## 环境变量
 
