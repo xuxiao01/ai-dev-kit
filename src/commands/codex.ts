@@ -2,32 +2,39 @@ import path from 'node:path';
 import fs from 'fs-extra';
 import { Command } from 'commander';
 import pc from 'picocolors';
-import { copyPathWithMode, listDirectoryNames, listResourceNames, type CopyMode } from '../utils/file.js';
+import { copyPathWithMode, listDirectoryNames, type CopyMode } from '../utils/file.js';
 
-type CodexResourceType = 'rule' | 'skill';
 type CodexCommandContext = { packageRoot: string };
 type AddOptions = { all?: boolean; force?: boolean };
 
-const RULE_START = '<!-- ai-dev-kit:codex-rule:';
+const SKILL_INDEX_START = '<!-- ai-dev-kit:codex-skills:start -->';
+const SKILL_INDEX_END = '<!-- ai-dev-kit:codex-skills:end -->';
+
+const SKILL_DESCRIPTIONS: Record<string, string> = {
+  'content-blog-optimize': '中文技术博客优化',
+  'document-project-docs': '项目文档组织与维护',
+  'document-project-readme': '项目 README 生成与维护',
+  'engineering-bug-review': '工程问题复盘',
+  'git-commit-staged': 'Git 暂存区提交',
+  'vue-component-config': 'Vue 组件配置规范'
+};
 
 export function createCodexCommand(context: CodexCommandContext): Command {
-  const codex = new Command('codex').description('Manage Codex skills and project rules.');
+  const codex = new Command('codex').description('Manage Codex skills for the current project.');
 
-  codex.command('list').description('List built-in Codex resources.').action(async () => {
-    const resources = await getCodexResources(context.packageRoot);
+  codex.command('list').description('List built-in Codex skills.').action(async () => {
+    const skills = await getCodexSkills(context.packageRoot);
     console.log(pc.bold('Codex Skills:'));
-    printResourceList(resources.skill);
-    console.log(pc.bold('Codex Rules:'));
-    printResourceList(resources.rule);
+    printResourceList(skills);
   });
 
   codex
     .command('add')
-    .description('Install Codex resources into the current project.')
-    .argument('[type]', 'Resource type: skill or rule')
-    .argument('[name]', 'Resource name to install')
-    .option('--all', 'Install all Codex resources, or every resource of the specified type')
-    .option('--force', 'Overwrite an existing skill or replace an installed rule block')
+    .description('Install Codex skills into the current project.')
+    .argument('[type]', 'Resource type: skill')
+    .argument('[name]', 'Skill name to install')
+    .option('--all', 'Install all Codex skills')
+    .option('--force', 'Overwrite an existing skill or replace the managed AGENTS.md index')
     .action(async (type: string | undefined, name: string | undefined, options: AddOptions) => {
       await handleAdd(context.packageRoot, type, name, options);
     });
@@ -35,33 +42,32 @@ export function createCodexCommand(context: CodexCommandContext): Command {
   return codex;
 }
 
-async function handleAdd(packageRoot: string, rawType: string | undefined, name: string | undefined, options: AddOptions): Promise<void> {
+async function handleAdd(
+  packageRoot: string,
+  rawType: string | undefined,
+  name: string | undefined,
+  options: AddOptions
+): Promise<void> {
   const mode: CopyMode = options.force ? 'overwrite' : 'skip';
   const projectRoot = process.cwd();
 
   if (options.all) {
-    if (name) throw new Error('Do not provide a resource name with --all. Use "codex add --all" or "codex add <skill|rule> --all".');
-    const type = normalizeResourceType(rawType);
-    const resources = await getCodexResources(packageRoot);
-    if (!type || type === 'skill') {
-      for (const skill of resources.skill) await installSkill(packageRoot, projectRoot, skill, mode);
-    }
-    if (!type || type === 'rule') {
-      for (const rule of resources.rule) await installRule(packageRoot, projectRoot, rule, mode);
-    }
+    if (name) throw new Error('Do not provide a skill name with --all. Use "codex add --all" or "codex add skill --all".');
+    normalizeResourceType(rawType);
+    const skills = await getCodexSkills(packageRoot);
+    for (const skill of skills) await installSkill(packageRoot, projectRoot, skill, mode);
     return;
   }
 
   const type = normalizeResourceType(rawType);
-  if (!type || !name) throw new Error('Missing arguments. Usage: ai-dev-kit codex add <skill|rule> <name>, ai-dev-kit codex add <skill|rule> --all, or ai-dev-kit codex add --all');
+  if (!type || !name) throw new Error('Missing arguments. Usage: ai-dev-kit codex add skill <name>, ai-dev-kit codex add skill --all, or ai-dev-kit codex add --all');
 
-  const resources = await getCodexResources(packageRoot);
-  if (!resources[type].includes(name)) {
-    throw new Error(`Unknown Codex ${type}: ${name}\nAvailable ${type}s: ${formatAvailable(resources[type])}`);
+  const skills = await getCodexSkills(packageRoot);
+  if (!skills.includes(name)) {
+    throw new Error(`Unknown Codex skill: ${name}\nAvailable skills: ${formatAvailable(skills)}`);
   }
 
-  if (type === 'skill') await installSkill(packageRoot, projectRoot, name, mode);
-  else await installRule(packageRoot, projectRoot, name, mode);
+  await installSkill(packageRoot, projectRoot, name, mode);
 }
 
 async function installSkill(packageRoot: string, projectRoot: string, name: string, mode: CopyMode): Promise<void> {
@@ -72,46 +78,51 @@ async function installSkill(packageRoot: string, projectRoot: string, name: stri
     mode
   );
   printCopyResult(targetPath, result);
+  await updateSkillIndex(projectRoot, name);
 }
 
-async function installRule(packageRoot: string, projectRoot: string, name: string, mode: CopyMode): Promise<void> {
-  const source = path.join(packageRoot, 'codex', 'rules', `${name}.md`);
-  const rule = await fs.readFile(source, 'utf8');
+async function updateSkillIndex(projectRoot: string, name: string): Promise<void> {
   const target = path.join(projectRoot, 'AGENTS.md');
-  const start = `${RULE_START}${name}:start -->`;
-  const end = `<!-- ai-dev-kit:codex-rule:${name}:end -->`;
-  const block = `${start}\n\n${rule.trim()}\n\n${end}`;
   const existing = (await fs.pathExists(target)) ? await fs.readFile(target, 'utf8') : '';
-  const startIndex = existing.indexOf(start);
+  const startIndex = existing.indexOf(SKILL_INDEX_START);
+  const names = new Set<string>();
 
   if (startIndex >= 0) {
-    if (mode === 'skip') {
-      console.log(pc.yellow(`Skipped existing rule: AGENTS.md (${name})`));
-      return;
-    }
-    const endIndex = existing.indexOf(end, startIndex);
-    if (endIndex < 0) throw new Error(`Cannot replace ${name}: its managed block in AGENTS.md is incomplete.`);
-    await fs.writeFile(target, `${existing.slice(0, startIndex)}${block}${existing.slice(endIndex + end.length)}`);
-    console.log(pc.green(`Overwritten rule: AGENTS.md (${name})`));
+    const endIndex = existing.indexOf(SKILL_INDEX_END, startIndex);
+    if (endIndex < 0) throw new Error('Cannot update AGENTS.md: its managed Codex skill index is incomplete.');
+    const managedBlock = existing.slice(startIndex, endIndex);
+    for (const match of managedBlock.matchAll(/\.agents\/skills\/([a-z0-9-]+)\/SKILL\.md/g)) names.add(match[1]);
+  }
+  names.add(name);
+
+  const block = [
+    SKILL_INDEX_START,
+    '',
+    '## 可用项目 Skills',
+    '',
+    '涉及对应任务时，先阅读相关 Skill：',
+    '',
+    ...[...names].sort((a, b) => a.localeCompare(b)).map((skill) => `- ${SKILL_DESCRIPTIONS[skill] ?? skill}：.agents/skills/${skill}/SKILL.md`),
+    '',
+    SKILL_INDEX_END
+  ].join('\n');
+
+  if (startIndex >= 0) {
+    const endIndex = existing.indexOf(SKILL_INDEX_END, startIndex);
+    await fs.writeFile(target, `${existing.slice(0, startIndex)}${block}${existing.slice(endIndex + SKILL_INDEX_END.length)}`);
     return;
   }
 
   await fs.writeFile(target, existing.trimEnd() ? `${existing.trimEnd()}\n\n${block}\n` : `${block}\n`);
-  console.log(pc.green(`Installed rule: AGENTS.md (${name})`));
 }
 
-async function getCodexResources(packageRoot: string): Promise<Record<CodexResourceType, string[]>> {
-  const [skills, rules] = await Promise.all([
-    listDirectoryNames(path.join(packageRoot, 'codex', 'skills'), 'SKILL.md'),
-    listResourceNames(path.join(packageRoot, 'codex', 'rules'), '.md')
-  ]);
-  return { skill: skills, rule: rules };
+async function getCodexSkills(packageRoot: string): Promise<string[]> {
+  return listDirectoryNames(path.join(packageRoot, 'codex', 'skills'), 'SKILL.md');
 }
 
-function normalizeResourceType(type: string | undefined): CodexResourceType | undefined {
-  if (type === 'skill' || type === 'rule') return type;
-  if (type) throw new Error('Invalid resource type. Use "skill" or "rule".');
-  return undefined;
+function normalizeResourceType(type: string | undefined): 'skill' {
+  if (type === undefined || type === 'skill') return 'skill';
+  throw new Error('Invalid resource type. Use "skill".');
 }
 
 function printCopyResult(targetPath: string, result: 'installed' | 'skipped' | 'overwritten'): void {

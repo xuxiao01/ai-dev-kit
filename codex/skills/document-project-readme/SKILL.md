@@ -1,5 +1,5 @@
 ---
-name: generate-project-readme
+name: document-project-readme
 description: Create or update a GitHub-ready README.md by inspecting the real project structure, dependencies, scripts, and implemented features. Use when the user asks to generate, rewrite, improve, or document a project's README; never invent unverified features or configuration.
 ---
 

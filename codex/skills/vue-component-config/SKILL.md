@@ -1,4 +1,9 @@
-# Vue 组件可调参数配置规则
+---
+name: vue-component-config
+description: 在 Vue 页面和组件开发中，组织可调配置、props、computed 与 CSS 变量，避免把业务参数和内部样式细节混在一起。适用于 Vue 2、Vue 2.7、Vue 3、H5、小游戏和业务组件开发。
+---
+
+# Vue 组件可调参数配置规范
 
 ## 1. 适用场景
 

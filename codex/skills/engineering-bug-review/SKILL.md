@@ -1,5 +1,5 @@
 ---
-name: bug-review
+name: engineering-bug-review
 description: Create a Chinese engineering problem review from the current conversation, code changes, errors, and project evidence. Use when the user asks to review a bug, summarize an engineering pitfall, document debugging lessons, or create a postmortem after AI-assisted development.
 ---
 

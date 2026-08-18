@@ -1,5 +1,5 @@
 ---
-name: optimize-blog
+name: content-blog-optimize
 description: 优化中文技术博客的标题结构、段落逻辑、语言表达、GEO 速览区、Mermaid 图表与 Markdown/HTML 排版，同时严格保留原文的主题、观点和事实边界。适用于用户要求润色、改写、整理或美化准备发布到 CSDN、掘金等平台的 Markdown 博客，并希望保留原文件、生成独立优化稿、逐步审阅修改的场景。
 ---
 

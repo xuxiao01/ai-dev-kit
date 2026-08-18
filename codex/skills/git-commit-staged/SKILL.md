@@ -1,5 +1,5 @@
 ---
-name: commit-staged-changes
+name: git-commit-staged
 description: Generate a Chinese Conventional Commit message from Git staged changes and execute exactly one safe commit. Use when the user explicitly asks Codex to commit the current staged changes, says “提交暂存区”, “帮我 commit”, or invokes this skill; do not use for merely explaining Git or reviewing changes without authorization to commit.
 ---
 

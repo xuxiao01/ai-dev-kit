@@ -1,5 +1,5 @@
 ---
-name: project-documentation
+name: document-project-docs
 description: Organize, create, migrate, or review project documentation with clear placement, indexes, links, and sensitive-information boundaries. Use when a request involves design documents, technical references, API or integration notes, development guides, deployment runbooks, troubleshooting records, worklogs, or documentation indexes.
 ---
 
