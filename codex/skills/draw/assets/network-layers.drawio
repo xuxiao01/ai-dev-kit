@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="network-layers" name="残差特征变换">
+    <mxGraphModel dx="1040" dy="332" grid="0" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1040" pageHeight="332" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="background" value="" style="fillColor=#FFFFFF;strokeColor=none;locked=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="1040" height="332" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="残差特征变换" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=34;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="17" width="976" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="" style="shape=cube;html=0;flipH=1;size=16;darkOpacity=0;darkOpacity2=0;fillColor=#FFFFFF;strokeColor=#384757;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="90" y="145" width="22" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="input-label" value="输入 x" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=29;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="27" y="265" width="148" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="conv" value="" style="shape=cube;html=0;flipH=1;size=16;darkOpacity=0;darkOpacity2=0;fillColor=#57A4D3;strokeColor=#384757;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="270" y="145" width="22" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="conv-label" value="Conv" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=29;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="207" y="265" width="148" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="norm" value="" style="shape=cube;html=0;flipH=1;size=16;darkOpacity=0;darkOpacity2=0;fillColor=#C9CED4;strokeColor=#384757;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="440" y="145" width="22" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="norm-label" value="Norm" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=29;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="377" y="265" width="148" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="activation" value="" style="shape=cube;html=0;flipH=1;size=16;darkOpacity=0;darkOpacity2=0;fillColor=#A5C97B;strokeColor=#384757;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="610" y="145" width="22" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="activation-label" value="ReLU" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=29;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="547" y="265" width="148" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="add" value="+" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;ellipse;fillColor=#FFF0CB;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="762" y="176" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="output" value="" style="shape=cube;html=0;flipH=1;size=16;darkOpacity=0;darkOpacity2=0;fillColor=#FFFFFF;strokeColor=#384757;strokeWidth=1.5;" parent="1" vertex="1">
+          <mxGeometry x="930" y="145" width="22" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="output-label" value="输出 y" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=29;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="867" y="265" width="148" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="input-to-conv" parent="1" edge="1" source="input" target="conv" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conv-to-norm" parent="1" edge="1" source="conv" target="norm" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="norm-to-activation" parent="1" edge="1" source="norm" target="activation" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="activation-to-add" parent="1" edge="1" source="activation" target="add" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="add-to-output" parent="1" edge="1" source="add" target="output" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=1;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="residual" parent="1" edge="1" source="input" target="add" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="101" y="112" />
+              <mxPoint x="786" y="112" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="residual-label" value="残差连接" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=25;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="365" y="72" width="160" height="36" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

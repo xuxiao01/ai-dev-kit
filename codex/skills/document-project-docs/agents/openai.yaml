@@ -1,4 +1,0 @@
-interface:
-  display_name: "项目文档管理"
-  short_description: "创建、归档与维护项目文档及其索引和敏感边界"
-  default_prompt: "Use $document-project-docs to organize and document this project's deployment workflow."

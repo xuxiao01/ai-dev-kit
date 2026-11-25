@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="operator-flow" name="双路池化与特征拼接">
+    <mxGraphModel dx="1040" dy="369" grid="0" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1040" pageHeight="369" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="background" value="" style="fillColor=#FFFFFF;strokeColor=none;locked=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="1040" height="369" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="双路池化与特征拼接" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=34;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="17" width="976" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="输入特征" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#EDF0F3;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="48" y="167" width="148" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="mean" value="均值池化" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#E3EFF8;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="284" y="105" width="174" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="max" value="最大池化" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#E6E1F2;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="284" y="230" width="174" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="concat" value="C" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;ellipse;fillColor=#FFF0CB;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="551" y="170" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="projection" value="线性投影" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#DCEBD4;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="681" y="167" width="158" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="output" value="输出" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#EDF0F3;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="909" y="167" width="86" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="input-mean" parent="1" edge="1" source="input" target="mean" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="199" />
+              <mxPoint x="230" y="136" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="input-max" parent="1" edge="1" source="input" target="max" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="199" />
+              <mxPoint x="230" y="261" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mean-concat" parent="1" edge="1" source="mean" target="concat" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0.12;entryY=0.22;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="511" y="136" />
+              <mxPoint x="511" y="182" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="max-concat" parent="1" edge="1" source="max" target="concat" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0.12;entryY=0.78;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="511" y="261" />
+              <mxPoint x="511" y="214" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="concat-projection" parent="1" edge="1" source="concat" target="projection" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="projection-output" parent="1" edge="1" source="projection" target="output" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="C 表示拼接" style="text;html=0;fontFamily=Arial;fontColor=#384757;fontSize=24;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="499" y="299" width="160" height="43" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

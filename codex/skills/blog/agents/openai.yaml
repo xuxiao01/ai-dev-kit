@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 写博客"
+  short_description: "优化技术博客，按 draw 规范优先使用本机 draw.io 配图，缺少软件时使用 AI 生图"
+  default_prompt: "使用 $blog 优化这篇博客，保留原文观点与事实边界，需要配图时读取 $draw 规范，优先使用本机 draw.io，缺少软件时使用 AI 生图。"

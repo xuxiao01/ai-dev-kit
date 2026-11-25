@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目验证与本地验收"
+  short_description: "按改动风险选择前后端检查与隔离环境验收，个人 Mock 仅作可选预览"
+  default_prompt: "使用 $project-verification，核对本次改动和本地环境，执行适用的安全验证，说明实际结果、阻塞及未验证项，不依赖个人 Mock。"

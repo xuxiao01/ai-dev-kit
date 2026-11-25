@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vue Component Config"
+  short_description: "遵循 Vue 组件可调配置与 props 组织规范"
+  default_prompt: "使用 $vue-config 检查或编写 Vue 组件配置。"

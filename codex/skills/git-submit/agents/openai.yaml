@@ -1,0 +1,4 @@
+interface:
+  display_name: "个人分支提交与同步"
+  short_description: "核对个人分支，暂存工作区并中文提交，同步最新主干后推送，供用户提交 PR"
+  default_prompt: "使用 $git-submit，检查当前个人分支，暂存工作区改动并提交，同步最新主干后推送个人分支。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目 UI 风格"
+  short_description: "延续本项目新版界面风格，规范页面布局、共享组件复用与交互状态"
+  default_prompt: "使用 $project-ui-style，按本项目已确认的新版 UI 风格设计或改造目标页面，优先复用现有组件并保留业务行为。"

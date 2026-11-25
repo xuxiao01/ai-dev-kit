@@ -1,0 +1,56 @@
+{
+  "name": "multi-agent-investment",
+  "skills": [
+    {
+      "name": "git-commit",
+      "description": "Git 暂存区提交",
+      "source": "codex/skills/git-commit",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "docs",
+      "description": "项目文档组织与维护",
+      "source": "codex/skills/docs",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "staged-change-report",
+      "description": "暂存区修改报告",
+      "source": "codex/packs/multi-agent-investment/skills/staged-change-report",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ]
+    },
+    {
+      "name": "project-ui-style",
+      "description": "投资平台 UI 风格",
+      "source": "codex/packs/multi-agent-investment/skills/project-ui-style",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/component-guide.md",
+        "references/page-patterns.md",
+        "references/visual-guidelines.md"
+      ]
+    },
+    {
+      "name": "project-verification",
+      "description": "投资平台验证与本地验收",
+      "source": "codex/packs/multi-agent-investment/skills/project-verification",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/local-environments.md",
+        "references/optional-mock.md",
+        "references/verification-guide.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "暂存区修改报告"
+  short_description: "根据暂存区生成中文修改报告，按年月归档并仅暂存新生成的报告"
+  default_prompt: "Use $staged-change-report to generate a Chinese report for the current staged changes and stage only the new report."

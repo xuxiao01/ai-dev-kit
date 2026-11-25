@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="architecture" name="带辅助监督的分类模型">
+    <mxGraphModel dx="1100" dy="399" grid="0" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1100" pageHeight="399" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="background" value="" style="fillColor=#FFFFFF;strokeColor=none;locked=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="1100" height="399" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="带辅助监督的分类模型" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=34;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="17" width="1036" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="输入样本" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#EDF0F3;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="54" y="267" width="145" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="encoder" value="特征编码" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#94C6E2;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="247" y="267" width="180" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="fusion" value="特征融合" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#FFCBAE;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="549" y="267" width="194" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="classification" value="分类输出" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#94C6E2;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="862" y="267" width="181" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="supervision" value="辅助监督" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#FFF0CB;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="247" y="113" width="180" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="auxiliary" value="辅助分支" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=28;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=0;fillColor=#FFCBAE;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="549" y="113" width="194" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="input-encoder" parent="1" edge="1" source="input" target="encoder" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="encoder-fusion" parent="1" edge="1" source="encoder" target="fusion" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fusion-classification" parent="1" edge="1" source="fusion" target="classification" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="supervise" parent="1" edge="1" source="supervision" target="auxiliary" style="edgeStyle=none;html=0;rounded=0;strokeColor=#9B5619;strokeWidth=2.2;dashed=1;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.4;exitPerimeter=0;entryX=0;entryY=0.4;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="training-only" value="仅训练" style="text;html=0;fontFamily=Arial;fontColor=#9B5619;fontSize=23;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="431" y="99" width="112" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="encoder-auxiliary" parent="1" edge="1" source="encoder" target="auxiliary" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.8;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="489" y="300" />
+              <mxPoint x="489" y="163" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="auxiliary-fusion" parent="1" edge="1" source="auxiliary" target="fusion" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

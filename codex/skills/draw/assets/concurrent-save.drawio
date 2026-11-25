@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" compressed="false">
+  <diagram id="concurrent-save" name="两个页面同时保存">
+    <mxGraphModel dx="680" dy="519" grid="0" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="680" pageHeight="519" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="background" value="" style="fillColor=#FFFFFF;strokeColor=none;locked=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="680" height="519" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="两个页面同时保存" style="text;html=0;fontFamily=Arial;fontColor=#223346;fontSize=34;fontStyle=1;align=left;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="32" y="17" width="616" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="page-a-lifeline" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#BAC6D2;strokeWidth=2.2;dashed=1;dashPattern=5 4;startArrow=none;endArrow=none;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="118" y="112" as="sourcePoint" />
+            <mxPoint x="118" y="485" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="page-a" value="页面 A" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=27;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#E3EFF8;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="38" y="78" width="160" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="service-lifeline" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#BAC6D2;strokeWidth=2.2;dashed=1;dashPattern=5 4;startArrow=none;endArrow=none;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="112" as="sourcePoint" />
+            <mxPoint x="340" y="485" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="service" value="保存服务" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=27;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#94C6E2;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="260" y="78" width="160" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="page-b-lifeline" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#BAC6D2;strokeWidth=2.2;dashed=1;dashPattern=5 4;startArrow=none;endArrow=none;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="562" y="112" as="sourcePoint" />
+            <mxPoint x="562" y="485" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="page-b" value="页面 B" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=27;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#E3EFF8;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="482" y="78" width="160" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="request-a" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="118" y="164" as="sourcePoint" />
+            <mxPoint x="340" y="164" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="request-a-label" value="提交版本 3" style="text;html=0;fontFamily=Arial;fontColor=#384757;fontSize=25;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="118" y="129" width="222" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="request-b" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="562" y="222" as="sourcePoint" />
+            <mxPoint x="340" y="222" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="request-b-label" value="提交版本 3" style="text;html=0;fontFamily=Arial;fontColor=#384757;fontSize=25;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="340" y="187" width="222" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="save-a" value="保存 A，版本升到 4" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#DCEBD4;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="210" y="237" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="reply-a" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#384757;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="340" as="sourcePoint" />
+            <mxPoint x="118" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reply-a-label" value="保存成功" style="text;html=0;fontFamily=Arial;fontColor=#384757;fontSize=25;fontStyle=0;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="118" y="305" width="222" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="check-b" value="校验 B，3 ≠ 4" style="html=0;fontFamily=Arial;fontColor=#223346;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;rounded=1;arcSize=12;fillColor=#FFF0CB;strokeColor=#384757;strokeWidth=1.8;" parent="1" vertex="1">
+          <mxGeometry x="220" y="356" width="240" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="reject-b" parent="1" edge="1" style="edgeStyle=none;html=0;rounded=0;strokeColor=#9B5619;strokeWidth=2.2;dashed=0;dashPattern=5 4;startArrow=none;endArrow=block;endFill=1;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="465" as="sourcePoint" />
+            <mxPoint x="562" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reject-b-label" value="409 版本冲突" style="text;html=0;fontFamily=Arial;fontColor=#9B5619;fontSize=25;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;spacing=0;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="340" y="430" width="222" height="32" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研与技术绘图"
+  short_description: "制作论文、答辩和技术文章的可编辑网络图、架构图与时序图"
+  default_prompt: "使用 $draw，根据实际结构画一张可放进论文、答辩 PPT 或技术文章的可编辑图。"
