@@ -10,7 +10,7 @@ const packageRoot = getPackageRoot(import.meta.url);
 program
   .name('ai-dev-kit')
   .description('Install AI development helper resources into your project.')
-  .version('0.2.1')
+  .version('0.2.2')
   .showHelpAfterError()
   .showSuggestionAfterError();
 
